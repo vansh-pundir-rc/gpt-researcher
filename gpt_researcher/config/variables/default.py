@@ -5,8 +5,8 @@ DEFAULT_CONFIG: BaseConfig = {
     "EMBEDDING": "openai:text-embedding-3-small",
     "SIMILARITY_THRESHOLD": 0.42,
     "FAST_LLM": "openai:gpt-4o-mini",
-    "SMART_LLM": "openai:gpt-4.1",  # Has support for long responses (2k+ words).
-    "STRATEGIC_LLM": "openai:o4-mini",  # Can be used with o1 or o3, please note it will make tasks slower.
+    "SMART_LLM": "openai:gpt-4.1", 
+    "STRATEGIC_LLM": "openai:o1",
     "FAST_TOKEN_LIMIT": 2000,
     "SMART_TOKEN_LIMIT": 4000,
     "STRATEGIC_TOKEN_LIMIT": 4000,
@@ -21,7 +21,7 @@ DEFAULT_CONFIG: BaseConfig = {
     "REPORT_FORMAT": "APA",
     "MAX_ITERATIONS": 3,
     "AGENT_ROLE": None,
-    "SCRAPER": "bs",
+    "SCRAPER": "tavily_extract",
     "MAX_SCRAPER_WORKERS": 15,
     "MAX_SUBTOPICS": 3,
     "LANGUAGE": "english",

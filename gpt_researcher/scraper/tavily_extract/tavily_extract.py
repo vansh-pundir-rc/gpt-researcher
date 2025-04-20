@@ -9,6 +9,30 @@ class TavilyExtract:
         self.session = session
         from tavily import TavilyClient
         self.tavily_client = TavilyClient(api_key=self.get_api_key())
+        
+    def extract_linkedin_profile(self, link):
+                
+        import requests
+
+        api_key = "6804a2b53f62ac4d463ebadb"
+        url = "https://api.scrapingdog.com/linkedin"
+
+        params = {
+            "api_key": api_key,
+            "type": "profile",
+            "linkId": link,
+            "private": "false"
+        }
+
+        response = requests.get(url, params=params)
+
+        if response.status_code == 200:
+            data = response.json()
+            print(data)
+        else:
+            print(f"Request failed with status code: {response.status_code}")
+        
+        return response.json()
 
     def get_api_key(self) -> str:
         """
@@ -36,7 +60,16 @@ class TavilyExtract:
         """
 
         try:
-            response = self.tavily_client.extract(urls=self.link)
+            if "linkedin" in self.link:
+                print("Extracting LinkedIn profile...")
+                print("LINK IS : ", self.link)
+                response = str(self.extract_linkedin_profile(self.link))
+                print("LinkedIn profile extracted")
+                print("--------------------------------")
+                print(response)
+                return response, [], ""
+            else:
+                response = self.tavily_client.extract(urls=self.link)
             if response['failed_results']:
                 return "", [], ""
 
